@@ -1,0 +1,7 @@
+// Без этого файла ВСКод не умеет подтягивать импорты.
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "moduleDetection": "force",
+  }
+}

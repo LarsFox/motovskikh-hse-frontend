@@ -1,0 +1,47 @@
+mixin meta(title, description, url, prms)
+  - if (typeof(prms.image) === 'undefined') { prms.image = 'https://motovskikh.ru/img/all_you_need_is_Leo_need_preview_2023.png'; }
+  - if (prms.image !== '{{.Image}}' && !prms.image.startsWith('http')) { prms.image = 'https://motovskikh.ru/img/' + prms.image; }
+  - if (typeof(prms.language) === 'undefined') { prms.language = 'ru';}
+
+  //- Если забыл косую черту в тексте ссылки.
+  - if (url.slice(-1) !== '/' && url.length > 0) { url += '/'; }
+
+  - let fav = '/img/'
+  if prms.fav !== undefined
+    - fav = '/' + prms.fav + '/'
+
+  link(rel="apple-touch-icon" sizes="180x180" href=fav + "favicon/apple-touch-icon.png")
+  link(rel="icon" type="image/png" sizes="32x32" href=fav + "favicon/favicon-32x32.png")
+  link(rel="icon" type="image/png" sizes="16x16" href=fav + "favicon/favicon-16x16.png")
+  link(rel="manifest" href=fav + "favicon/site.webmanifest")
+  link(rel="mask-icon" href=fav + "favicon/safari-pinned-tab.svg" color="#5bbad5")
+  link(rel="shortcut icon" href=fav + "favicon/favicon.ico")
+  meta(name="twitter:card" content="summary_large_image")
+  meta(name="msapplication-TileColor" content="#da532c")
+  meta(name="msapplication-config" content=fav + "favicon/browserconfig.xml")
+  meta(name="theme-color" content="#ffffff")
+
+  title=title
+  meta(property='og:description' content=description)
+  meta(property='og:title' content=title)
+  meta(property='og:image' content=prms.image)
+  meta(property='og:url' content='https://motovskikh.ru/' + url)
+  link(rel='canonical' href='https://motovskikh.ru/' + url)
+
+  //- Для Яндекса.
+  meta(name="Description" content=description)
+
+mixin css(href)
+  if hashes[href] === undefined
+    - console.log('Missing hash for css ', href)
+  link(href=href + hashes[href] rel='stylesheet' type='text/css')
+
+mixin js(href)
+  if hashes[href] === undefined
+    - console.log('Missing hash for js ', href)
+  script(src=href + hashes[href] type='module')
+
+mixin fonts(families)
+  link(rel="preconnect" href="https://fonts.googleapis.com")
+  link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+  link(href="https://fonts.googleapis.com/css2?" + families.v + "&display=swap" rel="stylesheet")

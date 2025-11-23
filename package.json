@@ -1,0 +1,67 @@
+{
+  "name": "motovskikh",
+  "version": "11.11",
+  "description": "Leon Motovskikh and his website",
+  "main": "render.js",
+  "scripts": {
+    "compress": "node build/compress.js",
+    "hashes": "node build/hashes.js",
+    "render": "node build/render.js"
+  },
+  "author": "Leo",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@node-minify/clean-css": "^5.3.0",
+    "@node-minify/core": "^6.1.0",
+    "jshint": "^2.13.6",
+    "md5-file": "^4.0.0",
+    "pug": "^3.0.1"
+  },
+  "dependencies": {
+    "@panzoom/panzoom": "^4.5.1",
+    "html2canvas": "^1.4.1",
+    "leaflet": "^1.7.1",
+    "maplibre-gl": "^5.9.0",
+    "pako": "^2.1.0",
+    "raphael": "^2.3.0"
+  },
+  "jshintConfig": {
+    "bitwise": false,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "esversion": 7,
+    "forin": false,
+    "freeze": true,
+    "futurehostile": true,
+    "globalstrict": true,
+    "leanswitch": true,
+    "maxdepth": 5,
+    "noarg": true,
+    "nocomma": true,
+    "node": true,
+    "nonew": true,
+    "noreturnawait": true,
+    "quotmark": true,
+    "shadow": true,
+    "singleGroups": false,
+    "strict": true,
+    "undef": true,
+    "unused": true,
+    "validthis": true,
+    "varstmt": true,
+    "globals": {
+      "$": false,
+      "maplibregl": false,
+      "L": false,
+      "NoSleep": false,
+      "Panzoom": false,
+      "Raphael": false,
+      "autosize": false,
+      "html2canvas": false,
+      "pako": false
+    }
+  }
+}
