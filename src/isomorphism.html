@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+    <title>Интерактивные графы</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/isomorphism.css" />
+  </head>
+  <body>
+    <h1>Выставка "Изоморфизм"</h1>
+
+    <div class="main-container">
+      <div class="sample-row">
+        <div class="sample-container">
+          <div class="graph-title">Sample</div>
+          <div id="sample" class="graph"></div>
+        </div>
+      </div>
+
+      <div class="graphs-container">
+        <!-- Левая колонка -->
+        <div class="left-column">
+          <div class="graph-container" data-graph="1">
+            <div class="graph-title">Граф 1</div>
+            <div id="graph1" class="graph"></div>
+          </div>
+
+          <div class="graph-container" data-graph="2">
+            <div class="graph-title">Граф 2</div>
+            <div id="graph2" class="graph"></div>
+          </div>
+
+          <div class="graph-container" data-graph="3">
+            <div class="graph-title">Граф 3</div>
+            <div id="graph3" class="graph"></div>
+          </div>
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="right-column">
+          <div class="graph-container" data-graph="4">
+            <div class="graph-title">Граф 4</div>
+            <div id="graph4" class="graph"></div>
+          </div>
+
+          <div class="graph-container" data-graph="5">
+            <div class="graph-title">Граф 5</div>
+            <div id="graph5" class="graph"></div>
+          </div>
+
+          <div class="graph-container" data-graph="6">
+            <div class="graph-title">Граф 6</div>
+            <div id="graph6" class="graph"></div>
+          </div>
+        </div>
+      </div>
+      <button id="sendButton">Отправить</button>
+      <div id="response"></div>
+    </div>
+    <script src="js/isomorphism.js"></script>
+  </body>
+</html>
