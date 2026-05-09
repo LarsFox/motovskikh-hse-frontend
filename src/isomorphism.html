@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
-    <title>Интерактивные графы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Выставка "Изоморфизм"</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/isomorphism.css" />
+    <link rel="stylesheet" type="text/css" href="css/graphs.css" />
   </head>
   <body>
     <h1>Выставка "Изоморфизм"</h1>
 
-    <div class="main-container">
+    <section id="startScreen" class="game-start-screen">
+      <section class="intro-panel">
+        <p>
+          Художник нарисовал один граф и сделал к нему несколько
+          "переодетых" версий. Снаружи они могут отличаться, но некоторые из
+          них на самом деле устроены одинаково.
+        </p>
+        <p>
+          Найди все графы, которые имеют ту же структуру, что и
+          <strong>Sample</strong>.
+        </p>
+        <p>
+          <strong>Подсказка:</strong><br />
+          Смотри не на форму картинки, а на то,
+          <strong>какие вершины соединены между собой</strong>. Если нужно,
+          вершины можно <strong>перетаскивать</strong>, чтобы удобнее
+          рассмотреть граф.
+        </p>
+        <strong>Как играть:</strong>
+        <ul>
+          <li>Выбери все подходящие графы.</li>
+          <li>При желании подвигай вершины, чтобы лучше сравнить структуру.</li>
+          <li>Нажми <strong>"Отправить"</strong>, чтобы проверить ответ.</li>
+        </ul>
+      </section>
+      <button id="startButton">Начать</button>
+    </section>
+
+    <div id="gameArea" class="main-container game-area" hidden>
+      <section class="intro-panel">
+        <p>
+          Художник нарисовал один граф и сделал к нему несколько
+          "переодетых" версий. Снаружи они могут отличаться, но некоторые из
+          них на самом деле устроены одинаково.
+        </p>
+        <p>
+          Найди все графы, которые имеют ту же структуру, что и
+          <strong>Sample</strong>.
+        </p>
+        <p>
+          <strong>Подсказка:</strong><br />
+          Смотри не на форму картинки, а на то,
+          <strong>какие вершины соединены между собой</strong>. Если нужно,
+          вершины можно <strong>перетаскивать</strong>, чтобы удобнее
+          рассмотреть граф.
+        </p>
+        <strong>Как играть:</strong>
+        <ul>
+          <li>Выбери все подходящие графы.</li>
+          <li>При желании подвигай вершины, чтобы лучше сравнить структуру.</li>
+          <li>Нажми <strong>"Отправить"</strong>, чтобы проверить ответ.</li>
+        </ul>
+      </section>
+
+      <div id="timer-display" class="game-meta">⏱️ 0:00 | Раунд 1 из 5</div>
+
       <div class="sample-row">
         <div class="sample-container">
           <div class="graph-title">Sample</div>
@@ -18,45 +74,39 @@
       </div>
 
       <div class="graphs-container">
-        <!-- Левая колонка -->
-        <div class="left-column">
-          <div class="graph-container" data-graph="1">
-            <div class="graph-title">Граф 1</div>
-            <div id="graph1" class="graph"></div>
-          </div>
-
-          <div class="graph-container" data-graph="2">
-            <div class="graph-title">Граф 2</div>
-            <div id="graph2" class="graph"></div>
-          </div>
-
-          <div class="graph-container" data-graph="3">
-            <div class="graph-title">Граф 3</div>
-            <div id="graph3" class="graph"></div>
-          </div>
+        <div class="graph-container" data-graph="1">
+          <div class="graph-title">Граф 1</div>
+          <div id="graph1" class="graph"></div>
         </div>
-
-        <!-- Правая колонка -->
-        <div class="right-column">
-          <div class="graph-container" data-graph="4">
-            <div class="graph-title">Граф 4</div>
-            <div id="graph4" class="graph"></div>
-          </div>
-
-          <div class="graph-container" data-graph="5">
-            <div class="graph-title">Граф 5</div>
-            <div id="graph5" class="graph"></div>
-          </div>
-
-          <div class="graph-container" data-graph="6">
-            <div class="graph-title">Граф 6</div>
-            <div id="graph6" class="graph"></div>
-          </div>
+        <div class="graph-container" data-graph="2">
+          <div class="graph-title">Граф 2</div>
+          <div id="graph2" class="graph"></div>
+        </div>
+        <div class="graph-container" data-graph="3">
+          <div class="graph-title">Граф 3</div>
+          <div id="graph3" class="graph"></div>
+        </div>
+        <div class="graph-container" data-graph="4">
+          <div class="graph-title">Граф 4</div>
+          <div id="graph4" class="graph"></div>
+        </div>
+        <div class="graph-container" data-graph="5">
+          <div class="graph-title">Граф 5</div>
+          <div id="graph5" class="graph"></div>
+        </div>
+        <div class="graph-container" data-graph="6">
+          <div class="graph-title">Граф 6</div>
+          <div id="graph6" class="graph"></div>
         </div>
       </div>
-      <button id="sendButton">Отправить</button>
+
+      <div class="game-toolbar">
+        <button id="sendButton">Отправить</button>
+        <button id="endButton" class="black-button">Завершить игру</button>
+      </div>
       <div id="response"></div>
     </div>
-    <script src="js/isomorphism.js"></script>
+
+    <script src="js/isomorphism-game.js"></script>
   </body>
 </html>

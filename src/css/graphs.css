@@ -1,0 +1,432 @@
+:root {
+  /* Цвета */
+  --bg-color: #202021db;
+  --text-color: #ffffff;
+  --card-bg: rgb(255, 246, 253);
+  --card-title-color: #120d0d;
+  --primary-color: #3CA0D0;
+  --primary-hover: #086FA1;
+  --selected-color: #4caf50;
+  --button-bg: #4CAF50;
+  --button-hover: rgb(52, 109, 56);
+  --button-disabled: #cccccc;
+  --border-color: #333;
+  --edge-color: #ccc;
+  
+  /* Тени */
+  --shadow-default: 0 3px 12px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.6);
+  --shadow-selected: 0 3px 15px rgba(76, 175, 80, 0.5);
+  
+  /* Размеры */
+  --container-padding: 20px;
+  --card-padding: 15px;
+  --graph-height: 250px;
+  --sample-width: 300px;
+  --button-width: 350px;
+  --graph-border: 2px;
+  
+  /* Отступы */
+  --gap-small: 10px;
+  --gap-medium: 20px;
+  --gap-large: 30px;
+  --gap-extra: 40px;
+  
+  /* Границы */
+  --border-radius-small: 4px;
+  --border-radius-medium: 5px;
+  --border-radius-large: 8px;
+  
+  /* Шрифты */
+  --font-size-small: 10px;
+  --font-size-normal: 16px;
+  --font-weight-bold: bold;
+}
+
+body {
+  padding: var(--container-padding);
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: var(--gap-large);
+  color: var(--text-color);
+}
+
+button {
+  padding: var(--gap-small) var(--gap-medium);
+  font-size: var(--font-size-normal);
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-medium);
+  cursor: pointer;
+  width: var(--button-width);
+  margin: var(--gap-medium) auto;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+button:disabled {
+  background-color: var(--button-disabled);
+  cursor: not-allowed;
+}
+
+.game-start-screen {
+  width: min(100%, 760px);
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+}
+
+.game-start-screen .intro-panel {
+  text-align: left;
+}
+
+.game-start-screen[hidden],
+.game-area[hidden] {
+  display: none !important;
+}
+
+.game-area,
+.main-container {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+}
+
+.intro-panel {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--card-title-color);
+  border-radius: var(--border-radius-large);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-default);
+  line-height: 1.45;
+}
+
+.game-meta {
+  color: #fff;
+  background: transparent;
+  padding: 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.game-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.game-toolbar button {
+  margin: 0;
+}
+
+.black-button {
+  background-color: #111 !important;
+}
+
+.orange-button {
+  background-color: #ff9800 !important;
+}
+
+.red-button {
+  background-color: #f44336 !important;
+}
+
+.sample-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.find-way-card {
+  width: min(100%, 575px) !important;
+}
+
+.graph.find-way-graph {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.find-way-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--card-title-color);
+}
+
+.task-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #111;
+}
+
+.task-dot.green {
+  background: #4caf50;
+}
+
+.task-dot.red {
+  background: #f44336;
+}
+
+.main-container {
+  display: grid;
+  gap: var(--gap-extra);
+  max-width: 650px;
+  width: 100%;
+}
+
+.sample-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Sample карточка */
+.sample-container {
+  background-color: var(--card-bg);
+  padding: var(--card-padding);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-default);
+  transition: all 0.3s ease;
+  width: var(--sample-width);
+}
+
+.sample-container:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.graphs-container {
+  display: grid;
+  grid-template-columns: var(--sample-width) var(--sample-width);
+  gap: var(--gap-extra);
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.graph-container.selected {
+  background-color: var(--selected-color) !important;
+  box-shadow: var(--shadow-selected) !important;
+}
+
+.graph-container {
+  background-color: var(--card-bg);
+  padding: var(--card-padding);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-default);
+  transition: all 0.3s ease;
+}
+
+.graph-container:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.graph-title {
+  text-align: center;
+  margin-bottom: var(--gap-small);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-bold);
+  color: var(--card-title-color);
+}
+
+.graph {
+  width: 100%;
+  height: var(--graph-height);
+  border: var(--graph-border) solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  position: relative;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.main-container,
+.game-area {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  width: 100%;
+  max-width: 1120px;
+}
+
+.game-start-screen[hidden],
+.game-area[hidden] {
+  display: none !important;
+}
+
+.graphs-container {
+  display: grid;
+  grid-template-columns: repeat(3, var(--sample-width));
+  gap: 16px;
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 980px;
+  overflow-x: auto;
+}
+
+.left-column,
+.right-column {
+  display: none !important;
+}
+
+.graph-container {
+  width: var(--sample-width);
+  border: 8px solid transparent;
+  cursor: pointer;
+}
+
+.graph-container.selected {
+  background-color: var(--card-bg) !important;
+  border-color: #087f23 !important;
+  box-shadow: none !important;
+}
+
+.graph-container.answer-correct {
+  background-color: #dff7df !important;
+  border-color: #168821 !important;
+  box-shadow: none !important;
+}
+
+.graph-container.answer-incorrect {
+  background-color: #ffe1df !important;
+  border-color: #c62828 !important;
+  box-shadow: none !important;
+}
+
+.graph-container.answer-missed {
+  background-color: #fff0bd !important;
+  border-color: #f08a00 !important;
+  box-shadow: none !important;
+}
+
+.graph-container.answer-correct::after,
+.graph-container.answer-incorrect::after,
+.graph-container.answer-missed::after {
+  display: block;
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: var(--border-radius-small);
+  color: #111;
+  font-weight: bold;
+  text-align: center;
+}
+
+.graph-container.answer-correct::after {
+  content: "Верно выбран";
+  background: #a7e9ac;
+}
+
+.graph-container.answer-incorrect::after {
+  content: "Лишний выбор";
+  background: #ffb4ad;
+}
+
+.graph-container.answer-missed::after {
+  content: "Нужно было выбрать";
+  background: #ffd978;
+}
+
+.game-meta {
+  color: #fff;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.game-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.game-toolbar button {
+  margin: 0;
+}
+
+.black-button {
+  background-color: #111 !important;
+}
+
+@media (max-width: 680px) {
+  .graphs-container {
+    grid-template-columns: repeat(3, var(--sample-width));
+  }
+}
+
+
+/* Базовые рёбра — серые */
+edge {
+  line-color: #ccc !important;
+  width: 6px !important;
+  opacity: 1 !important;
+}
+
+/* Выбранные рёбра — рыжие */
+edge.selected {
+  line-color: #FF9800 !important;
+  width: 7px !important;
+}
+
+/* Последнее выбранное — с подложкой */
+edge.last-selected {
+  line-color: #F57C00 !important;
+  underlay-color: #3a18c5e1 !important;
+  underlay-padding: 5px !important;
+  underlay-opacity: 0.85 !important;
+}
+
+/* Возможные для выбора — зелёные */
+edge.possible {
+  line-color: #4CAF50 !important;
+  width: 6px !important;
+  cursor: pointer !important;
+}
+
+/* Недоступные — пунктирные серые */
+edge.disabled {
+  line-color: #9E9E9E !important;
+  width: 3px !important;
+  line-style: dashed !important;
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Побег из поместья</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/graphs.css" />
+  </head>
+  <body>
+    <h1>Побег из поместья</h1>
+
+    <div class="main-container">
+      <section id="startScreen" class="game-start-screen">
+        <section class="intro-panel">
+          <p>
+            Все двери в поместье запутались в одну карту. Чтобы выбраться,
+            нужно провести путь по всем коридорам, не повторяя ни один коридор
+            дважды.
+          </p>
+          <p>
+            Начать можно с любого ребра. После первого ребра можно продолжить
+            путь от любой из двух его вершин, а дальше идти можно только от
+            последней вершины, куда пришел путь.
+          </p>
+          <p>
+            Последнее выбранное ребро можно нажать еще раз, чтобы отменить ход.
+          </p>
+        </section>
+        <button id="startButton">Начать</button>
+      </section>
+
+      <div id="gameArea" class="game-area" hidden>
+        <section class="intro-panel">
+          <p>
+            Все двери в поместье запутались в одну карту. Чтобы выбраться,
+            нужно провести путь по всем коридорам, не повторяя ни один коридор
+            дважды.
+          </p>
+          <p>
+            Начать можно с любого ребра. После первого ребра можно продолжить
+            путь от любой из двух его вершин, а дальше идти можно только от
+            последней вершины, куда пришел путь.
+          </p>
+          <p>
+            Последнее выбранное ребро можно нажать еще раз, чтобы отменить ход.
+          </p>
+        </section>
+
+        <div id="escapeStatus" class="game-meta">0:00 | Раунд 1</div>
+
+        <div class="sample-row">
+          <div class="sample-container">
+            <div class="graph-title">Можете начать с любого ребра</div>
+            <div id="sample" class="graph"></div>
+          </div>
+        </div>
+
+        <div class="game-toolbar">
+          <button id="undoButton" class="orange-button"> Отменить последний ход</button>
+          <button id="resetButton" class="red-button"> Начать заново</button>
+          <button id="sendButton">Отправить</button>
+          <button id="endButton" class="black-button">Завершить игру</button>
+        </div>
+        <div id="response"></div>
+      </div>
+    </div>
+
+    <script src="js/escape.js"></script>
+  </body>
+</html>

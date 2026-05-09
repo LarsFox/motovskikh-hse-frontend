@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <title>Найди кратчайший путь</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/graphs.css" />
+  </head>
+  <body>
+    <h1>Найди кратчайший путь</h1>
+
+    <div class="main-container">
+      <section id="startScreen" class="game-start-screen">
+        <section class="intro-panel">
+          <p>
+            На карте есть стартовая и финишная вершины. На каждом ребре написан
+            вес: сколько сил нужно потратить, чтобы пройти по этому ребру.
+          </p>
+          <p>
+            Нажимай на ребра по порядку и построй путь от старта до финиша.
+            Игра посчитает длину твоего пути и сравнит ее с самым коротким
+            путем.
+          </p>
+          <p>
+            <strong>Подсказка:</strong> выбранное ребро можно нажать еще раз,
+            чтобы отменить последний ход.
+          </p>
+        </section>
+        <button id="startButton">Начать</button>
+      </section>
+
+      <div id="gameArea" class="game-area" hidden>
+        <section class="intro-panel">
+          <p>
+            На карте есть стартовая и финишная вершины. На каждом ребре написан
+            вес: сколько сил нужно потратить, чтобы пройти по этому ребру.
+          </p>
+          <p>
+            Нажимай на ребра по порядку и построй путь от старта до финиша.
+            Игра посчитает длину твоего пути и сравнит ее с самым коротким
+            путем.
+          </p>
+          <p>
+            <strong>Подсказка:</strong> выбранное ребро можно нажать еще раз,
+            чтобы отменить последний ход.
+          </p>
+        </section>
+
+        <div id="findWayStatus" class="game-meta">⏱️ 0:00 | Раунд 1 из 5</div>
+
+        <div class="sample-row">
+          <div class="sample-container find-way-card">
+            <div class="find-way-task">
+              Найди кратчайший путь от
+              <span class="task-dot green" aria-label="зеленого кружка"></span>
+              до
+              <span class="task-dot red" aria-label="красного кружка"></span>
+            </div>
+            <div id="findWayGraph" class="graph find-way-graph"></div>
+          </div>
+        </div>
+
+        <div class="game-toolbar">
+          <button id="resetButton" class="orange-button">Начать заново</button>
+          <button id="sendButton">Отправить</button>
+          <button id="endButton" class="black-button">Завершить игру</button>
+        </div>
+        <div id="response"></div>
+      </div>
+    </div>
+
+    <script src="js/find_way.js"></script>
+  </body>
+</html>
