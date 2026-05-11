@@ -21,7 +21,7 @@ const FIND_WAY_CONFIG = {
     DEFAULT_COLOR: "#ccc",
     SELECTED_COLOR: "#FF9800",
     SHORTEST_COLOR: "#4CAF50",
-    WRONG_COLOR: "#f44336",
+    USER_PATH_COLOR: "#FF9800",
     DISABLED_COLOR: "#9E9E9E",
     LABEL_BG: "#fff8dc",
   },
@@ -29,7 +29,7 @@ const FIND_WAY_CONFIG = {
     FIT_PADDING: 10,
     MIN_ZOOM: 0.6,
     MAX_ZOOM: 3,
-    WHEEL_SENSITIVITY: 0.6,
+    WHEEL_SENSITIVITY: 0.18,
     RECENTER_DELAY: 180,
     RECENTER_DURATION: 620,
   },
@@ -179,7 +179,7 @@ function selectedPathEndsAt(edgeId) {
 }
 
 function clearResultStyles() {
-  cy.edges().removeClass("shortest user-wrong");
+  cy.edges().removeClass("shortest user-wrong shared-path");
 }
 
 function refreshEdgeStyles() {
@@ -252,7 +252,17 @@ function createGraph(graph, start, finish) {
       },
       { selector: "edge.selected", style: { width: FIND_WAY_CONFIG.EDGE.SELECTED_WIDTH, "line-color": FIND_WAY_CONFIG.EDGE.SELECTED_COLOR } },
       { selector: "edge.shortest", style: { width: FIND_WAY_CONFIG.EDGE.RESULT_WIDTH, "line-color": FIND_WAY_CONFIG.EDGE.SHORTEST_COLOR } },
-      { selector: "edge.user-wrong", style: { width: FIND_WAY_CONFIG.EDGE.RESULT_WIDTH, "line-color": FIND_WAY_CONFIG.EDGE.WRONG_COLOR } },
+      { selector: "edge.user-wrong", style: { width: FIND_WAY_CONFIG.EDGE.RESULT_WIDTH, "line-color": FIND_WAY_CONFIG.EDGE.USER_PATH_COLOR } },
+      {
+        selector: "edge.shared-path",
+        style: {
+          width: 5,
+          "line-color": FIND_WAY_CONFIG.EDGE.SHORTEST_COLOR,
+          "underlay-color": FIND_WAY_CONFIG.EDGE.USER_PATH_COLOR,
+          "underlay-padding": 5,
+          "underlay-opacity": 1,
+        },
+      },
       { selector: "edge.disabled", style: { opacity: 0.35, "line-color": FIND_WAY_CONFIG.EDGE.DISABLED_COLOR } },
     ],
     layout: { name: "preset" },
@@ -335,21 +345,21 @@ async function startGame() {
 function showResultModal(isSuccess, title, text, onClose) {
   const existing = document.getElementById("find-way-result-modal");
   if (existing) existing.remove();
+  const existingInline = document.getElementById("find-way-result-panel");
+  if (existingInline) existingInline.remove();
 
-  const modal = document.createElement("div");
-  modal.id = "find-way-result-modal";
-  modal.style.cssText =
-    "position: fixed; inset: 0; background: rgba(0,0,0,0.78); display: flex; align-items: center; justify-content: center; z-index: 1000;";
-  modal.innerHTML = `
-    <div style="background: white; color: #111; padding: 28px; border-radius: 12px; text-align: center; max-width: 420px; box-shadow: 0 10px 35px rgba(0,0,0,0.35);">
-      <h2 style="margin-top: 0;">${title}</h2>
-      <p style="font-size: 18px; line-height: 1.45;">${text}</p>
-      <button id="find-way-modal-close" style="background: ${isSuccess ? "#4CAF50" : "#f44336"}; color: white; border: none; padding: 10px 22px; border-radius: 6px; cursor: pointer;">Закрыть</button>
-    </div>
+  const response = document.getElementById("response");
+  const panel = document.createElement("div");
+  panel.id = "find-way-result-panel";
+  panel.className = `inline-result-panel ${isSuccess ? "success" : "warning"}`;
+  panel.innerHTML = `
+    <h2>${title}</h2>
+    <p>${text}</p>
+    <button id="find-way-panel-close" class="${isSuccess ? "" : "red-button"}">Закрыть</button>
   `;
-  document.body.appendChild(modal);
-  document.getElementById("find-way-modal-close").addEventListener("click", () => {
-    modal.remove();
+  response?.replaceChildren(panel);
+  document.getElementById("find-way-panel-close").addEventListener("click", () => {
+    panel.remove();
     if (onClose) onClose();
   });
 }
@@ -473,13 +483,18 @@ async function submitPath() {
 
   stopTimer();
   isRoundLocked = true;
-  cy.edges().removeClass("shortest user-wrong");
-  if (!result.is_valid || result.user_path_length !== result.shortest_path_length) {
+  const shortestPathEdges = result.shortest_path_edges || [];
+  const success = result.is_valid && result.user_path_length === result.shortest_path_length;
+  const correctPathEdges = shortestPathEdges.length > 0 ? shortestPathEdges : selectedEdges;
+  cy.edges().removeClass("selected disabled shortest user-wrong shared-path");
+  if (!success) {
     selectedEdges.forEach((edgeId) => cy.getElementById(edgeId).addClass("user-wrong"));
   }
-  result.shortest_path_edges.forEach((edgeId) => cy.getElementById(edgeId).addClass("shortest"));
+  correctPathEdges.forEach((edgeId) => cy.getElementById(edgeId).addClass("shortest"));
+  selectedEdges
+    .filter((edgeId) => !success && correctPathEdges.includes(edgeId))
+    .forEach((edgeId) => cy.getElementById(edgeId).addClass("shared-path"));
 
-  const success = result.is_valid && result.user_path_length === result.shortest_path_length;
   const title = success ? "Победа!" : "Почти получилось";
   const text = `${result.message}<br>Твой путь: ${result.user_path_length}.<br>Кратчайший путь: ${result.shortest_path_length}.<br>Время: ${formatTime(elapsedSeconds)}.`;
   showResultModal(success, title, text, async () => {

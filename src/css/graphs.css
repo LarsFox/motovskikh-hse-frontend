@@ -6,7 +6,7 @@
   --card-title-color: #120d0d;
   --primary-color: #3CA0D0;
   --primary-hover: #086FA1;
-  --selected-color: #4caf50;
+  --selected-color: #ff9800;
   --button-bg: #4CAF50;
   --button-hover: rgb(52, 109, 56);
   --button-disabled: #cccccc;
@@ -16,7 +16,7 @@
   /* Тени */
   --shadow-default: 0 3px 12px rgba(0, 0, 0, 0.4);
   --shadow-hover: 0 5px 15px rgba(0, 0, 0, 0.6);
-  --shadow-selected: 0 3px 15px rgba(76, 175, 80, 0.5);
+  --shadow-selected: none;
   
   /* Размеры */
   --container-padding: 20px;
@@ -258,7 +258,7 @@ button:disabled {
 .graph {
   width: 100%;
   height: var(--graph-height);
-  border: var(--graph-border) solid var(--border-color);
+  border: 0;
   border-radius: var(--border-radius-small);
   position: relative;
 }
@@ -296,7 +296,9 @@ body {
   align-items: start;
   width: 100%;
   max-width: 980px;
+  padding: 8px 0;
   overflow-x: auto;
+  overflow-y: visible;
 }
 
 .left-column,
@@ -306,13 +308,23 @@ body {
 
 .graph-container {
   width: var(--sample-width);
-  border: 8px solid transparent;
+  border: 3px solid transparent;
   cursor: pointer;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .graph-container.selected {
   background-color: var(--card-bg) !important;
-  border-color: #087f23 !important;
+  border-color: #ff9800 !important;
+  border-width: 8px !important;
+  box-shadow: none !important;
+}
+
+.graph-container.selected:hover {
+  transform: translateY(-3px);
+  border-color: #ff9800 !important;
   box-shadow: none !important;
 }
 
@@ -332,6 +344,60 @@ body {
   background-color: #fff0bd !important;
   border-color: #f08a00 !important;
   box-shadow: none !important;
+}
+
+.graph-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: #0b7ee8;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.inline-result-panel {
+  width: min(100%, 575px);
+  margin: 0 auto;
+  padding: 16px 18px;
+  background: #fff7ed;
+  color: #111;
+  border-left: 6px solid #ff9800;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-default);
+  text-align: center;
+}
+
+.inline-result-panel.success {
+  background: #edf9ee;
+  border-left-color: #4caf50;
+}
+
+.inline-result-panel.warning {
+  background: #fff7ed;
+  border-left-color: #ff9800;
+}
+
+.inline-result-panel h2 {
+  margin: 0 0 8px;
+  color: #111;
+}
+
+.inline-result-panel p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.inline-result-panel button {
+  width: auto;
+  min-width: 180px;
+  margin: 14px auto 0;
 }
 
 .graph-container.answer-correct::after,

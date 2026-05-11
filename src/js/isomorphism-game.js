@@ -10,7 +10,7 @@ const GRAPH_VIEW_CONFIG = {
   layoutPadding: 18,
   minZoom: 0.45,
   maxZoom: 2,
-  wheelSensitivity: 0.8,
+  wheelSensitivity: 0.18,
   recenterDelayMs: 180,
   recenterDurationMs: 620,
   recenterEasing: "ease-out",

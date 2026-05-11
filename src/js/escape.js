@@ -20,7 +20,7 @@ const GRAPH_CONFIG = {
     POSSIBLE: { WIDTH: 6, COLOR: "#4CAF50", OPACITY: 1 },
     DISABLED: { WIDTH: 3, COLOR: "#9E9E9E", OPACITY: 0.3 },
   },
-  ZOOM: { MIN: 0.6, MAX: 3, INITIAL: 1 },
+  ZOOM: { MIN: 0.6, MAX: 3, INITIAL: 1, WHEEL_SENSITIVITY: 0.18 },
   ANIMATION: { DURATION: 620, PADDING: 12, NODE_PADDING: 10, RECENTER_DELAY: 180 },
   LAYOUT: { BOUNDING_BOX: { x1: 50, y1: 50, x2: 250, y2: 250 } },
   GRAPH: {
@@ -184,8 +184,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { selector: "edge.disabled", style: { width: 3, "line-color": "#9E9E9E", opacity: 0.3, "line-style": "dashed", cursor: "not-allowed" } }
       ],
       layout: { name: "preset" },
-      minZoom: 0.6,
-      maxZoom: 3,
+      minZoom: GRAPH_CONFIG.ZOOM.MIN,
+      maxZoom: GRAPH_CONFIG.ZOOM.MAX,
+      wheelSensitivity: GRAPH_CONFIG.ZOOM.WHEEL_SENSITIVITY,
       userZoomingEnabled: true,
       userPanningEnabled: true,
       zoomingEnabled: true,
@@ -502,6 +503,9 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (canAddEdge(edgeId)) {
         selectedEdges.push(edgeId);
         updateEdgeStyles();
+        if (selectedEdges.length === currentGraph.edges.length) {
+          submitRound();
+        }
       }
     });
   }

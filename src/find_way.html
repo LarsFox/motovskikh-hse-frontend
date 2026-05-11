@@ -31,23 +31,8 @@
       </section>
 
       <div id="gameArea" class="game-area" hidden>
-        <section class="intro-panel">
-          <p>
-            На карте есть стартовая и финишная вершины. На каждом ребре написан
-            вес: сколько сил нужно потратить, чтобы пройти по этому ребру.
-          </p>
-          <p>
-            Нажимай на ребра по порядку и построй путь от старта до финиша.
-            Игра посчитает длину твоего пути и сравнит ее с самым коротким
-            путем.
-          </p>
-          <p>
-            <strong>Подсказка:</strong> выбранное ребро можно нажать еще раз,
-            чтобы отменить последний ход.
-          </p>
-        </section>
-
         <div id="findWayStatus" class="game-meta">⏱️ 0:00 | Раунд 1 из 5</div>
+        <div id="response"></div>
 
         <div class="sample-row">
           <div class="sample-container find-way-card">
@@ -66,7 +51,6 @@
           <button id="sendButton">Отправить</button>
           <button id="endButton" class="black-button">Завершить игру</button>
         </div>
-        <div id="response"></div>
       </div>
     </div>
 
