@@ -1,0 +1,352 @@
+body {
+  background: #080808;
+  font-family: "Golos Text", sans-serif;
+  font-size: 1.1em;
+  color: #e9e9e9;
+}
+
+.hidden {
+  display: none;
+}
+
+ul {
+  line-height: 150%;
+  list-style: none;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.allur {
+  margin: 80px auto 30px;
+  min-width: 800px;
+  max-width: 80vw;
+  position: relative;
+  z-index: 3;
+}
+
+.allur>.textrow {
+  padding-bottom: 10px;
+}
+
+.remal {
+  margin: 50px auto 30px;
+  max-width: 800px;
+  position: relative;
+  z-index: 3;
+}
+
+.megarow,
+.minirow,
+.textrow {
+  background: rgba(13, 13, 13, 0.85);
+}
+
+a,
+.activeLink,
+.megarow span {
+  border-bottom: 1px solid rgba(2, 240, 254, 0.502);
+  color: #02f0fe;
+  text-decoration: none;
+  transition: background .21s, border-color .21s, color .21s;
+}
+
+a:visited {
+  border-bottom-color: rgba(0, 157, 165, 0.502);
+  color: #009da5;
+}
+
+a.novisit,
+.almar a:visited {
+  border-bottom-color: rgba(2, 240, 254, 0.502);
+  color: #02f0fe;
+}
+
+a:hover,
+a.novisit:hover,
+.activeLink:hover,
+.almar a:visited:hover {
+  border-color: rgba(255, 50, 102, 0.502);
+  color: #ff3266;
+}
+
+.activeLink {
+  border-bottom: 1px dotted;
+  cursor: pointer;
+}
+
+h1,
+h2,
+th {
+  color: #ffbf69;
+}
+
+.megarow span {
+  line-height: 108%;
+  position: relative;
+  z-index: 5;
+}
+
+.almar a:hover,
+.almar a:visited:hover,
+.megarow:hover span {
+  border-color: transparent;
+  color: #e9e9e9;
+}
+
+.locker {
+  background: rgba(13, 13, 13, 0.72);
+  border-radius: 20px;
+  display: flex;
+  padding: 6px 8px 6px;
+  position: absolute;
+  right: 1.25%;
+  top: 1%;
+  z-index: 4;
+}
+
+.locker .cell {
+  padding: 0 4.5px 0 4.5px;
+}
+
+.locker .cell.pic {
+  padding-left: 24px;
+  position: relative;
+}
+
+.locker .cell.pic img {
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 20px;
+}
+
+.textrow {
+  padding: 20px;
+}
+
+.textrow h1:first-child {
+  margin-top: 0;
+}
+
+.minirow a {
+  padding: 3px 5px;
+}
+
+.minirow a:hover {
+  border-color: transparent;
+}
+
+.minirow a {
+  margin: 2px 4px;
+}
+
+.almar {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.almar a.blue:hover,
+.megarow.blue:hover {
+  background: #20a4f3;
+}
+
+.almar a.green:hover,
+.megarow.green:hover {
+  background: #2dc4b6;
+}
+
+.almar a.red:hover,
+.megarow.red:hover {
+  background: #ff3266;
+}
+
+.almar a.orange:hover,
+.megarow.orange:hover {
+  background: #fd7b48;
+}
+
+.almar a.yellow:hover,
+.megarow.yellow:hover {
+  background: #ffbf69;
+}
+
+.almar a.white:hover,
+.megarow.white:hover {
+  background: #fcfcfc;
+}
+
+.almar a.pink:hover,
+.megarow.pink:hover {
+  background: #eb30a3;
+}
+
+.almar a.orange:hover,
+.almar a.yellow:hover,
+.almar a.white:hover,
+.megarow.yellow:hover span,
+.megarow.white:hover span {
+  color: #080808;
+}
+
+.minirow {
+  padding: 20px 23px 15px;
+}
+
+.minirow.friend {
+  padding-top: 10px;
+}
+
+.megarow {
+  align-items: center;
+  display: flex;
+  font-size: 6em;
+  line-height: 100%;
+  padding: .09em .27em;
+  transition: background 0.21s, color 0.21s;
+  word-break: break-word;
+}
+
+.master .megarow {
+  width: 439px;
+}
+
+.almar .megarow {
+  letter-spacing: 20px;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.tiles a {
+  margin-bottom: 10px;
+}
+
+.tiles .bracket {
+  margin-bottom: 8px;
+}
+
+.brackets {
+  padding: 0 5px;
+}
+
+.bracket {
+  align-items: center;
+}
+
+.brackets a {
+  margin: 0 2px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.shape {
+  opacity: 0.87;
+  position: fixed;
+  z-index: 1;
+}
+
+.symmetric.blue {
+  background: #20a4f3;
+}
+
+.symmetric.green {
+  background: #2dc4b6;
+}
+
+.symmetric.red {
+  background: #ff3266;
+}
+
+.symmetric.yellow {
+  background: #ffbf69;
+}
+
+.triangle {
+  background: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-width: 0;
+  border-style: solid;
+  height: 0;
+  opacity: 0.87;
+  position: fixed;
+  transform: none;
+  transition: transform 3.3s;
+  width: 0;
+}
+
+.triangle.blue {
+  border-bottom-color: #20a4f3;
+}
+
+.triangle.green {
+  border-bottom-color: #2dc4b6;
+}
+
+.triangle.red {
+  border-bottom-color: #ff3266;
+}
+
+.triangle.yellow {
+  border-bottom-color: #ffbf69;
+}
+
+.triangle.western.windy {
+  transform: rotate(-540deg);
+}
+
+.triangle.eastern.windy {
+  transform: rotate(540deg);
+}
+
+.minirow.jirel {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.minirow.jirel p {
+  margin: 5px 0 12px;
+}
+
+.minirow.jirel .home {
+  padding-right: 1px;
+}
+
+@media (max-width: 800px) {
+  .remal {
+    margin-top: 70px;
+  }
+
+  .allur {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .minirow.friend {
+    padding-bottom: 7px;
+  }
+
+  .megarow {
+    font-size: 2.5em;
+    padding: 10px 28px;
+  }
+
+  .jiber,
+  .jirel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  p.caption {
+    line-height: 2;
+  }
+}

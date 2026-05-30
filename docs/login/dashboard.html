@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/imgn/favicon-16x16.png" />
+    <link rel="manifest" href="/img/site.webmanifest" />
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="shortcut icon" href="/img/favicon.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет Мастерской</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://unpkg.com/microns/microns.css">
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/login/css/tallur.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 68px;
+            margin-bottom: 8px;
+        }
+
+        h2.section-title,
+        h2.create-title {
+            margin: 32px 0 16px;
+        }
+
+        .desc {
+            color: #aaa;
+            font-size: 17px;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .textrow {
+            padding: 40px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 5%;
+            left: 10%;
+            width: 80%;
+            height: 90%;
+            background: rgba(8, 8, 8, 0.9);
+            z-index: 2;
+        }
+
+        .tests-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tests-table th {
+            color: #ffbf69;
+            text-align: left;
+            font-size: 22px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .tests-table td {
+            font-size: 17px;
+            padding: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #02f0fe;
+            vertical-align: middle;
+        }
+
+        .tests-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .test-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .edit-link {
+            color: #02f0fe;
+        }
+
+        .edit-link:hover {
+            color: #ff3266;
+        }
+
+        .delete-link {
+            color: #ff3266;
+            cursor: pointer;
+        }
+
+        .delete-link:hover {
+            color: #fff;
+        }
+
+        .empty-state {
+            color: #555;
+            font-size: 0.95em;
+            padding: 20px 0;
+        }
+
+        .create-option {
+            margin-bottom: 12px;
+        }
+
+        .create-option a {
+            color: #02f0fe;
+            font-size: 22px;
+        }
+
+        .create-option a:hover {
+            color: #ff3266;
+        }
+
+        .create-option p {
+            color: #aaa;
+            font-size: 17px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="locker">
+        <div class="cell pic">
+            <img src="../img/handc.png">
+            <a href="https://motovskikh.ru/" class="novisit">Леонид Мотовских</a>
+        </div>
+        <div class="cell">
+            <a href="https://motovskikh.ru/thanks/" class="novisit">Задонатить</a>
+        </div>
+        <div class="cell">
+            <a href="#" onclick="logout()">Выйти</a>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div class="remal">
+        <h1>Мастерская</h1>
+        <p class="desc">Пространство для управления своими тестами.</p>
+        <p class="desc">
+            Заявки на отметку звёздочкой и жалобы отправляйте
+            <a href="https://t.me/motovskikh_tests_chat">в Чат тестов в Телеграме</a>.
+        </p>
+        <p class="desc"><a
+                href="https://docs.google.com/document/d/1HEK7K6BcVTfa7DO0kFeRM1Iq-G6E_SH263mdXT7Zu3M/edit?tab=t.0">Правила
+                Мастерской.</a></p>
+
+        <h2 class="section-title">Мои тесты</h2>
+
+        <table class="tests-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th><i class="mu-question"></i></th>
+                    <th><i class="mu-star"></i></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tests-body">
+                <tr>
+                    <td colspan="4" class="empty-state">Загрузка...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="create-section">
+            <h2 class="create-title">Создать тест</h2>
+
+            <div class="create-option">
+                <a href="https://motovskikh.ru/tests/tiles/">Мозайка</a>
+                <p>Для фотогалерей, флагов, пород и тестов со случайным порядком вопросов</p>
+            </div>
+
+            <div class="create-option">
+                <a href="https://motovskikh.ru/tests/workshop/">Мастерок</a>
+                <p>Для географических карт и схем с вопросами в пространстве</p>
+            </div>
+
+            <div class="create-option">
+                <a href="https://motovskikh.ru/tests/portfolio/#order">Спонсор</a>
+                <p>Если Мастерской не хватает — украшаю на ваш вкус, выставляю чек как самозанятый</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/login/js/shapes.js"></script>
+    <script>
+        async function fetchWithRefresh(url, options = {}) {
+            const response = await fetch(url, { ...options, credentials: "include" });
+
+            if (response.status === 401) {
+                const refreshResponse = await fetch("/api/auth/refresh", {
+                    method: "POST",
+                    credentials: "include"
+                });
+
+                if (!refreshResponse.ok) {
+                    window.location.href = "/login/enjoy.html";
+                    return null;
+                }
+
+                return await fetch(url, { ...options, credentials: "include" });
+            }
+
+            return response;
+        }
+
+        // Загружаем тесты с сервера
+        async function loadTests() {
+            try {
+                const response = await fetchWithRefresh("/api/v1/workshop/my/", {
+                    credentials: "include" // отправляем куки
+                });
+
+                const data = await response.json();
+                const tbody = document.getElementById("tests-body");
+
+                if (!data.ok || !data.result || data.result.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">У вас пока нет тестов</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = data.result.map(test => `
+                    <tr>
+                        <td>${test.Title}</td>
+                        <td>${test.Questions_count ?? 0}</td>
+                        <td>${test.Rating}</td>
+                        <td>
+                            <div class="test-actions">
+                                <a href="/edit-test.html?id=${test.ID}" class="edit-link"><i class="mu-edit"></i></a>
+                                <span class="delete-link" onclick="deleteTest(${test.ID}, '${test.Title}')"><i class="mu-delete"></i></span>
+                            </div>
+                        </td>
+                    </tr>
+                `).join("");
+
+            } catch (err) {
+                document.getElementById("tests-body").innerHTML =
+                    '<tr><td colspan="4" class="empty-state">Ошибка загрузки тестов</td></tr>';
+            }
+        }
+
+        // Удаление теста
+        async function deleteTest(id, title) {
+            if (!confirm(`Вы уверены, что хотите удалить "${title}"?`)) return;
+
+            try {
+                const response = await fetchWithRefresh("/api/tests/" + id, { //?
+                    method: "DELETE",
+                    credentials: "include"
+                });
+
+                if (response.ok) {
+                    loadTests();
+                }
+            } catch (err) {
+                alert("Возникла ошибка при удалении теста");
+            }
+        }
+
+        async function logout() {
+            await fetchWithRefresh("/api/auth/logout", {
+                method: "POST",
+                credentials: "include"
+            });
+            window.location.href = "/login/enjoy.html";
+        }
+
+        loadTests();
+    </script>
+</body>
+
+</html>

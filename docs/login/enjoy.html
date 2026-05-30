@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+    <link rel="shortcut icon" href="../img/favicon.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мастерская</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/tallur.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .textrow {
+            padding: 40px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        body {
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 14px;
+            background: #080808;
+            border: none;
+            border-radius: 4px;
+            font-family: "Golos Text", sans-serif;
+            font-size: 25px;
+            color: #fff;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: #080808;
+            border: none;
+            border-radius: 4px;
+            font-family: "Golos Text", sans-serif;
+            font-size: 25px;
+            color: #fff;
+            outline: none;
+            margin-bottom: 8px;
+        }
+
+        .password-input::placeholder {
+            color: #666;
+        }
+
+        .password-input:focus {
+            border-color: #02f0fe;
+        }
+
+        h1 {
+            font-size: 68px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 16px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 2px #02f0fe;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: #ffbf69;
+            border: none;
+            border-radius: 4px;
+            font-family: "Golos Text", sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            color: #080808;
+            cursor: pointer;
+            transition: background 0.21s;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            background: #ff3266;
+            color: #fff;
+        }
+
+        .btn-primary:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        .btn-tg {
+            width: 100%;
+            padding: 14px;
+            background: #2AABEE;
+            border: none;
+            border-radius: 4px;
+            font-family: "Golos Text", sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.21s;
+            margin-bottom: 8px;
+        }
+
+        .btn-tg:hover {
+            background: #1a9bd8;
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: right;
+            margin-bottom: 16px;
+            font-size: 0.85em;
+            width: fit-content;
+            margin-left: auto;
+        }
+
+        .error {
+            color: #ff3266;
+            font-size: 0.9em;
+            margin-top: 12px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="locker">
+        <div class="cell pic">
+            <img src="../img/handc.png">
+            <a href="https://motovskikh.ru/" class="novisit">Леонид Мотовских</a>
+        </div>
+        <div class="cell">
+            <a href="https://motovskikh.ru/thanks/" class="novisit">Задонатить</a>
+        </div>
+        <div class="cell">
+            <a href="https://motovskikh.ru/en/" class="novisit">En</a>
+        </div>
+    </div>
+
+    <div class="remal">
+        <div class="textrow">
+            <h1>Мастерская</h1>
+            <p class="subtitle">Войдите или зарегистрируйтесь</p>
+
+            <form id="signin-form">
+                <input type="email" id="email" placeholder="your@email.com" required />
+                <div style="position:relative;display:flex;align-items:center;margin-bottom:8px;">
+                    <input type="password" id="password" class="password-input" placeholder="Пароль" required />
+                    <span onclick="togglePassword()" style="position:absolute;right:14px;cursor:pointer;color:#aaa;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </span>
+                </div>
+                <a href="/login/forgot-password.html" class="forgot-link">Забыли пароль?</a>
+                <button type="submit" class="btn-primary" id="submit-btn">Войти</button>
+                <!--button type="button" class="btn-tg" id="tg-btn">Войти через Telegram</button !-->
+            </form>
+
+            <div class="error" id="error-msg"></div>
+        </div>
+    </div>
+
+    <script src="./js/shapes.js"></script>
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("password");
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function validatePassword(password) {
+            if (password.length < 8) return "Пароль слишком короткий: минимум 8 символов";
+            if (!/[a-zA-Zа-яА-Я]/.test(password)) return "Пароль должен содержать букву";
+            if (!/[0-9]/.test(password)) return "Пароль должен содержать цифру";
+            if (!/[^a-zA-Zа-яА-Я0-9]/.test(password)) return "Пароль должен содержать спецсимвол";
+            return null;
+        }
+
+        document.getElementById("signin-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const btn = document.getElementById("submit-btn");
+            const errorMsg = document.getElementById("error-msg");
+
+            const passError = validatePassword(password);
+            if (passError) {
+                errorMsg.textContent = passError;
+                errorMsg.style.display = "block";
+                return;
+            }
+
+            errorMsg.style.display = "none";
+            btn.disabled = true;
+            btn.textContent = "Загрузка...";
+
+            try {
+                const response = await fetch("/api/auth/enjoy", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json; charset=utf-8" },
+                    body: JSON.stringify({ name: email, pass: password })
+                });
+
+                if (response.status === 204) {
+                    window.location.href = "/login/verify-email.html?email=" + encodeURIComponent(email);
+                    return;
+                }
+
+                if (!response.ok) {
+                    errorMsg.textContent = "Неверный email или пароль";
+                    errorMsg.style.display = "block";
+                    btn.disabled = false;
+                    btn.textContent = "Продолжить";
+                    return;
+                }
+
+                window.location.href = "/login/dashboard.html";
+
+            } catch (err) {
+                errorMsg.textContent = "Ошибка соединения с сервером";
+                errorMsg.style.display = "block";
+                btn.disabled = false;
+                btn.textContent = "Продолжить";
+            }
+        });
+
+        document.getElementById("tg-btn").addEventListener("click", () => {
+            alert("Вход через Telegram будет доступен позже");
+        });
+    </script>
+</body>
+
+</html>
