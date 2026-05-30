@@ -202,18 +202,32 @@
 
     <script src="/login/js/shapes.js"></script>
     <script>
+        async function fetchWithRefresh(url, options = {}) {
+            const response = await fetch(url, { ...options, credentials: "include" });
+
+            if (response.status === 401) {
+                const refreshResponse = await fetch("/api/auth/refresh", {
+                    method: "POST",
+                    credentials: "include"
+                });
+
+                if (!refreshResponse.ok) {
+                    window.location.href = "/login/enjoy.html";
+                    return null;
+                }
+
+                return await fetch(url, { ...options, credentials: "include" });
+            }
+
+            return response;
+        }
+
         // Загружаем тесты с сервера
         async function loadTests() {
             try {
-                const response = await fetch("/api/v1/workshop/my/", {
+                const response = await fetchWithRefresh("/api/v1/workshop/my/", {
                     credentials: "include" // отправляем куки
                 });
-
-                if (response.status === 401) {
-                    // Если пользователь не авторизован с глаз долой из сердца вон (на вход)
-                    window.location.href = "login/enjoy.html";
-                    return;
-                }
 
                 const data = await response.json();
                 const tbody = document.getElementById("tests-body");
@@ -230,7 +244,7 @@
                         <td>${test.Rating}</td>
                         <td>
                             <div class="test-actions">
-                                <a href="/edit-test.html?id=${test.ID}" class="edit-link"><i class="mu-edit"></i></span>
+                                <a href="/edit-test.html?id=${test.ID}" class="edit-link"><i class="mu-edit"></i></a>
                                 <span class="delete-link" onclick="deleteTest(${test.ID}, '${test.Title}')"><i class="mu-delete"></i></span>
                             </div>
                         </td>
@@ -248,7 +262,7 @@
             if (!confirm(`Вы уверены, что хотите удалить "${title}"?`)) return;
 
             try {
-                const response = await fetch("/api/tests/" + id, { //?
+                const response = await fetchWithRefresh("/api/tests/" + id, { //?
                     method: "DELETE",
                     credentials: "include"
                 });
@@ -262,7 +276,7 @@
         }
 
         async function logout() {
-            await fetch("/api/auth/logout", {
+            await fetchWithRefresh("/api/auth/logout", {
                 method: "POST",
                 credentials: "include"
             });
