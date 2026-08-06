@@ -107,6 +107,8 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
   let achievements = [];
   let currentFilter = "all";
   let lastFocus = null;
+  const awardQueue = [];
+  let awardVisible = false;
 
   async function open() {
     lastFocus = document.activeElement;
@@ -149,6 +151,28 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
     for (const achievement of visible) list.append(renderAchievement(achievement, assetURL));
   }
 
+  function showNextAward() {
+    if (awardVisible || awardQueue.length === 0) return;
+    awardVisible = true;
+    const achievement = awardQueue.shift();
+    const toast = element("aside", "achievement-toast");
+    toast.setAttribute("role", "status");
+    const image = achievementImage(achievement, assetURL);
+    const body = document.createElement("div");
+    body.append(element("strong", "", copy.unlocked), element("span", "", achievement.title));
+    toast.append(image, body);
+    shadow.append(toast);
+    requestAnimationFrame(() => toast.classList.add("visible"));
+    window.setTimeout(() => {
+      toast.classList.remove("visible");
+      window.setTimeout(() => {
+        toast.remove();
+        awardVisible = false;
+        showNextAward();
+      }, 250);
+    }, 5000);
+  }
+
   for (const control of filterButtons) {
     control.addEventListener("click", () => {
       currentFilter = control.dataset.filter;
@@ -167,18 +191,8 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
   return {
     open, close: dismiss, refresh,
     showAward(achievement) {
-      const toast = element("aside", "achievement-toast");
-      toast.setAttribute("role", "status");
-      const image = achievementImage(achievement, assetURL);
-      const body = document.createElement("div");
-      body.append(element("strong", "", copy.unlocked), element("span", "", achievement.title));
-      toast.append(image, body);
-      shadow.append(toast);
-      requestAnimationFrame(() => toast.classList.add("visible"));
-      window.setTimeout(() => {
-        toast.classList.remove("visible");
-        window.setTimeout(() => toast.remove(), 250);
-      }, 5000);
+      awardQueue.push(achievement);
+      showNextAward();
     },
   };
 }
