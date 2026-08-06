@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Star</title>
+  <path fill="#ffbf69" stroke="#080808" stroke-linejoin="round" stroke-width="3"
+        d="M32 5.5 39.7 22l18 2.2-13.3 12.3 3.5 17.8L32 45.4 16.1 54.3l3.5-17.8L6.3 24.2l18-2.2L32 5.5Z"/>
+  <circle cx="26" cy="30" r="2" fill="#080808"/>
+  <circle cx="38" cy="30" r="2" fill="#080808"/>
+  <path d="M25 36c2.2 2.7 4.5 4 7 4s4.8-1.3 7-4" fill="none" stroke="#080808" stroke-linecap="round" stroke-width="2.5"/>
+</svg>

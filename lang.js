@@ -6,6 +6,11 @@ const lang = {
   href: { en: "/en/", ru: "/" },
   year: { en: year.toString(), ru: year.toString() },
   inWord: { en: "In English", ru: "По-русски" },
+  achievementsTitle: { en: "My achievements", ru: "Мои ачивки" },
+  achievementsDescription: {
+    en: "Achievements earned in Motovskikh Tests",
+    ru: "Ачивки, полученные в тестах Мотовских",
+  },
 };
 
 const ru = {};

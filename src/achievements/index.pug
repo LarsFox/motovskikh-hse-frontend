@@ -1,0 +1,14 @@
+include ../parts/mixins.pug
+include ../parts/skeleton/head-nsx.html
+
++meta(lang.achievementsTitle, lang.achievementsDescription, url, { language: lang.lang })
++css('/css/tallur.css')
++css('/css/achievements.css')
+
+include ../parts/skeleton/neck.html
+
+main#achievements-root
+
++js('/js/achievements-page.js')
+
+include ../parts/skeleton/feet.html
