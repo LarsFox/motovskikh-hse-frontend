@@ -20,3 +20,6 @@ hash/copy pipeline. Integrate result submission by keeping the existing
 
 The browser extension is a test adapter, not production code. Production must use
 same-origin credentials and the site's current authenticated result request.
+For local visual QA only, `AchievementsApi` accepts `testLogin`; it sends the
+UTF-8 value as Base64URL in `X-Test-Login`. The mock backend converts the
+normalized login to a stable numeric ID. Do not enable this header in production.
