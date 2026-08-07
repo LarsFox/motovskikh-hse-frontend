@@ -3,6 +3,7 @@
 .vscode
 node_modules
 __pycache__
+tools/achievements-tester-extension/dist/
 
 .env
 

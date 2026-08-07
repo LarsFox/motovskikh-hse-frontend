@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motovskikh Achievements Tester</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Тестовые ачивки</h1>
+    <p>Расширение отправляет только результат теста и указанный ниже тестовый логин. Backend преобразует логин в стабильный числовой ID и не хранит исходный текст. Это наивная тестовая идентификация: владение логином не проверяется.</p>
+    <form>
+      <label>URL тестового backend <input id="backendURL" type="url" placeholder="https://example.org/achievements" required></label>
+      <label>Тестовый логин <input id="testLogin" type="text" minlength="2" maxlength="64" autocomplete="username" required></label>
+      <button type="submit">Сохранить и проверить доступ</button>
+      <output id="status" aria-live="polite"></output>
+    </form>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
+
