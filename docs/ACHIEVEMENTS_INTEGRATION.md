@@ -1,25 +1,27 @@
-# Achievements frontend integration
+# Интеграция ачивок в клиентскую часть
 
-The reusable UI is in `src/js/achievements.js`; styles are isolated in Shadow DOM
-and loaded from `src/css/achievements.css`. The normal page entry point is
-`src/js/achievements-page.js`, with the Pug page in `src/achievements/index.pug`.
+Переиспользуемый интерфейс находится в `src/js/achievements.js`. Стили изолированы
+в Shadow DOM и загружаются из `src/css/achievements.css`. Штатная точка входа страницы —
+`src/js/achievements-page.js`, а Pug-шаблон — `src/achievements/index.pug`.
 
-Build an image path from the stable achievement slug:
+Путь к изображению формируется из постоянного символьного имени ачивки:
 
 `/img/achievements/<slug>.svg`
 
-Only `src/img/achievements/star.svg` is supplied for the prototype. Missing
-per-achievement images fall back to this asset, so art can be added later without
-changing API or table rows.
+Для прототипа предоставлен только файл `src/img/achievements/star.svg`. Если отдельного
+изображения ачивки нет, используется эта картинка. Благодаря этому изображения можно
+добавить позже без изменения API или строк таблицы.
 
-The UI supports Russian and English responses, keyboard Escape/close, focus
-return, filters for all/earned/locked items, a newly-earned toast and a full-width
-mobile layout below 600px. Integrate the page through the repository's normal
-hash/copy pipeline. Integrate result submission by keeping the existing
-`/tests/submit/` request and showing every item returned in `new_achievements`.
+Интерфейс поддерживает русские и английские ответы, закрытие клавишей Escape,
+возврат фокуса, фильтры «все», «полученные» и «неполученные», уведомление о новой
+ачивке и мобильную компоновку на всю ширину при размере экрана менее 600 пикселей.
+Страницу следует подключать через штатный конвейер хеширования и копирования
+репозитория. Для отправки результата нужно сохранить существующий запрос
+`/tests/submit/` и показывать каждую ачивку из массива `new_achievements`.
 
-The browser extension is a test adapter, not production code. Production must use
-same-origin credentials and the site's current authenticated result request.
-For local visual QA only, `AchievementsApi` accepts `testLogin`; it sends the
-UTF-8 value as Base64URL in `X-Test-Login`. The mock backend converts the
-normalized login to a stable numeric ID. Do not enable this header in production.
+Браузерное расширение является тестовым адаптером, а не кодом рабочего контура.
+В рабочем контуре должны использоваться штатная авторизация сайта и текущий
+авторизованный запрос результата. Только для локальной визуальной проверки
+`AchievementsApi` принимает `testLogin` и передаёт его UTF-8-значение в кодировке
+Base64URL через заголовок `X-Test-Login`. Тестовый сервер преобразует нормализованный
+логин в постоянный числовой ID. В рабочем контуре этот заголовок включать нельзя.
