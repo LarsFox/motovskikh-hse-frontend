@@ -18,9 +18,8 @@ const text = {
 };
 
 export class AchievementsApi {
-  constructor({baseURL = "", testLogin = null, fetchImpl = window.fetch.bind(window)}) {
+  constructor({baseURL = "", fetchImpl = window.fetch.bind(window)}) {
     this.baseURL = baseURL.replace(/\/$/, "");
-    this.testLogin = testLogin;
     this.fetchImpl = fetchImpl;
   }
 
@@ -28,18 +27,8 @@ export class AchievementsApi {
     return this.request(`/api/v1/achievements?language=${encodeURIComponent(language)}`);
   }
 
-  async submitTestResult(result, language) {
-    return this.request(`/api/v1/test-results?language=${encodeURIComponent(language)}`, {
-      method: "POST",
-      body: JSON.stringify(result),
-    });
-  }
-
   async request(path, options = {}) {
     const headers = {"Content-Type": "application/json", ...(options.headers || {})};
-    if (this.testLogin !== null) {
-      headers["X-Test-Login"] = encodeTestLogin(this.testLogin);
-    }
     const response = await this.fetchImpl(this.baseURL + path, {
       credentials: this.baseURL ? "omit" : "same-origin", ...options, headers,
     });
@@ -49,13 +38,6 @@ export class AchievementsApi {
     }
     return payload.result;
   }
-}
-
-function encodeTestLogin(login) {
-  const bytes = new TextEncoder().encode(String(login).trim());
-  let binary = "";
-  for (const byte of bytes) binary += String.fromCharCode(byte);
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
 }
 
 export function createAchievementsUI({api, language = "ru", assetURL, mount = document.body}) {
