@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Motovskikh Achievements Tester",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "Test-only achievements overlay for motovskikh.ru",
   "permissions": ["storage"],
   "host_permissions": [

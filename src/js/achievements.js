@@ -137,7 +137,7 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
       list.append(element("p", "achievement-status", copy.empty));
       return;
     }
-    for (const achievement of visible) list.append(renderAchievement(achievement, assetURL));
+    for (const achievement of visible) list.append(renderAchievement(achievement, assetURL, lang));
   }
 
   function showNextAward() {
@@ -148,7 +148,10 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
     toast.setAttribute("role", "status");
     const image = achievementImage(achievement, assetURL);
     const body = document.createElement("div");
-    body.append(element("strong", "", copy.unlocked), element("span", "", achievement.title));
+    body.append(
+      element("strong", "", copy.unlocked),
+      element("span", "", localizeAchievementText(achievement.title, lang)),
+    );
     toast.append(image, body);
     shadow.append(toast);
     requestAnimationFrame(() => toast.classList.add("visible"));
@@ -186,14 +189,21 @@ export function createAchievementsUI({api, language = "ru", assetURL, mount = do
   };
 }
 
-function renderAchievement(achievement, assetURL) {
+function renderAchievement(achievement, assetURL, language) {
   const article = element("article", `achievement-row${achievement.earned ? " earned" : " locked"}`);
   article.style.setProperty("--achievement-color", achievement.color || "#ffbf69");
   const body = document.createElement("div");
-  body.append(element("h2", "achievement-name", achievement.title));
-  body.append(element("p", "achievement-description", achievement.description));
+  body.append(element("h2", "achievement-name", localizeAchievementText(achievement.title, language)));
+  body.append(element("p", "achievement-description", localizeAchievementText(achievement.description, language)));
   article.append(achievementImage(achievement, assetURL), body);
   return article;
+}
+
+export function localizeAchievementText(value, language = "ru") {
+  if (typeof value === "string") return value;
+  if (!value || typeof value !== "object" || Array.isArray(value)) return "";
+  const lang = language.toLowerCase().startsWith("en") ? "en" : "ru";
+  return value[lang] || value.ru || value.en || Object.values(value).find((item) => typeof item === "string") || "";
 }
 
 function achievementImage(achievement, assetURL) {

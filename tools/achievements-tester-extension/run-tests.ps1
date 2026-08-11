@@ -1,5 +1,6 @@
 $toolRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $tests = @(
+    "achievements-i18n.test.cjs",
     "background.test.cjs",
     "content-auto.test.cjs",
     "options.test.cjs",
