@@ -1,0 +1,143 @@
+include ../parts/mixins.pug
+include ../parts/skeleton/head-nsx.html
+
+- var pageLang = lang.lang
+- var t = pageLang == 'en' ? { title: 'CountryPath', sub: 'Build a route across countries through land borders.', go: 'Start!', ph: 'Type a country…', path: 'Your route:', task: 'Task will appear here.', undo: 'Undo', clear: 'Clear', next: 'Next round (Enter)', skip: 'Skip', score: 'Score:', rounds: 'Rounds:', roundsInf: 'Infinite', timeout: 'Timeout (sec):', timeoutOff: 'No timeout', settings: 'Settings', gameOver: 'Game Over', finalScore: 'Final score:', playAgain: 'Play again', needTimeout: 'Timeout is required for infinite rounds!', taskLang: 'Task language:', taskLangRu: 'Russian', taskLangEn: 'English', taskLangBoth: 'Both', dontKnow: "I don't know", flags: 'Flags', capitals: 'Capitals', airflights: 'Air flights', flagTitle: 'Pick the flag', capitalTitle: 'Pick the capital', flagRevealTitle: 'You clicked on the country:', airflightBtn: 'Use flight', airflightLeft: 'left' } : { title: 'CountryPath', sub: 'Постройте маршрут по странам через сухопутные границы.', go: 'Поехали!', ph: 'Введите страну…', path: 'Ваш маршрут:', task: 'Здесь появится задание.', undo: 'Отменить', clear: 'Очистить', next: 'Следующий раунд (Enter)', skip: 'Пропустить', score: 'Очки:', rounds: 'Раундов:', roundsInf: 'Бесконечно', timeout: 'Таймаут (сек):', timeoutOff: 'Без таймаута', settings: 'Настройки', gameOver: 'Игра окончена', finalScore: 'Итоговый счёт:', playAgain: 'Играть снова', needTimeout: 'При бесконечных раундах нужен таймаут!', taskLang: 'Язык для заданий с алфавитом:', taskLangRu: 'Русский', taskLangEn: 'Английский', taskLangBoth: 'Оба', dontKnow: 'Не знаю', flags: 'Флаги', capitals: 'Столицы', airflights: 'Авиаперелёты', flagTitle: 'Выберите флаг', capitalTitle: 'Выберите столицу', flagRevealTitle: 'Вы нажали на страну:', airflightBtn: 'Использовать перелёт', airflightLeft: 'осталось' }
+
++meta(t.title, t.sub, url, { language: pageLang })
++fonts({ v: 'family=Golos+Text:wght@400..900' })
++css('/css/countrypath.css')
+
+script(src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js" type="text/javascript")
+
+meta#language(content=pageLang)
+
+include ../parts/skeleton/neck.html
+
+.top
+  .brand= t.title
+  .scoreBar
+    span.scoreLabel= t.score
+    span#scoreDisplay.scoreValue 0
+  #timerDisplay.timer.hidden
+  if pageLang == 'ru'
+    a.langLink(href='/countrypath/en/' title='In English') En
+  else
+    a.langLink(href='/countrypath/' title='По-русски') Ру
+
+.content
+  #panelNewGame.panel
+    h1= t.title
+    p= t.sub
+    .settingsBlock
+      .settingRow
+        label.settingLabel(for='roundsInput')= t.rounds
+        select#roundsInput.settingSelect
+          option(value='0')= t.roundsInf
+          option(value='1') 1
+          option(value='2') 2
+          option(value='3') 3
+          option(value='5') 5
+          option(value='8') 8
+          option(value='13') 13
+          option(value='21') 21
+          option(value='34') 34
+          option(value='55') 55
+      .settingRow
+        label.settingLabel(for='timeoutInput')= t.timeout
+        input#timeoutInput.settingInput(type='number' min='0' value='0')
+        span.settingHint= t.timeoutOff
+      .settingRow
+        label.settingLabel(for='taskLangInput')= t.taskLang
+        select#taskLangInput.settingSelect
+          if pageLang == 'ru'
+            option(value='ru')= t.taskLangRu
+            option(value='en')= t.taskLangEn
+            option(value='both' selected)= t.taskLangBoth
+          else
+            option(value='en')= t.taskLangEn
+            option(value='ru')= t.taskLangRu
+            option(value='both' selected)= t.taskLangBoth
+      .settingRow
+        label.settingLabel(for='flagsInput')= t.flags
+        input#flagsInput.settingCheckbox(type='checkbox')
+      .settingRow
+        label.settingLabel(for='capitalsInput')= t.capitals
+        input#capitalsInput.settingCheckbox(type='checkbox')
+      .settingRow
+        label.settingLabel(for='airflightsInput')= t.airflights
+        input#airflightsInput.settingCheckbox(type='checkbox')
+    p#settingsError.settingsError.hidden
+    button#startButton.button(type='button')= t.go
+
+  #panelGameOver.panel.hidden
+    h1= t.gameOver
+    p
+      span= t.finalScore
+      |  
+      span#finalScore.scoreValue 0
+    button#playAgainButton.button(type='button')= t.playAgain
+
+  .overflower
+    #map.map
+    .zoomControls
+      button#zoomIn.zoomBtn(type='button' title='+') +
+      button#zoomOut.zoomBtn(type='button' title='−') −
+      button#zoomReset.zoomBtn(type='button' title='reset') ⤢
+
+  #nameModal.modal.modalNarrow.hidden
+    .modalOverlay
+    .modalBox
+      .modalHeader
+        span.modalTitle= t.ph
+        button#nameModalClose.modalClose(type='button' title='×') ×
+      .modalBody
+        input#countryInput(type='text' placeholder=t.ph autocomplete='off' spellcheck='false')
+        #autocomplete.autocomplete.hidden
+        button#dontKnowButton.dontKnowBtn(type='button')= t.dontKnow
+
+  #revealModal.modal.modalTop.hidden
+    .modalOverlay
+    .modalBox
+      .modalHeader
+        span.modalTitle= t.flagRevealTitle
+      .modalBody.modalBodyCenter
+        #revealName.revealName
+
+  #flagModal.modal.hidden
+    .modalOverlay
+    .modalBox
+      .modalHeader
+        span.modalTitle= t.flagTitle
+        button#flagModalClose.modalClose(type='button' title='×') ×
+      .modalBody
+        #flagGrid.flagGrid
+        button#flagDontKnowButton.dontKnowBtn(type='button')= t.dontKnow
+
+  #capitalModal.modal.hidden
+    .modalOverlay
+    .modalBox
+      .modalHeader
+        span.modalTitle= t.capitalTitle
+        button#capitalModalClose.modalClose(type='button' title='×') ×
+      .modalBody
+        #capitalGrid.capitalGrid
+        button#capitalDontKnowButton.dontKnowBtn(type='button')= t.dontKnow
+
+  .bottom
+    #taskBar.taskBar= t.task
+    #pathBar.pathBar
+      span.pathLabel= t.path
+      span#pathCounter.pathCounter
+      span#pathList.pathList
+    .btnRow
+      button#undoButton.smallBtn.hidden(type='button')= t.undo
+      button#clearButton.smallBtn.hidden(type='button')= t.clear
+      button#skipButton.smallBtn.hidden(type='button')= t.skip
+    #info.info
+    button#nextButton.nextRoundBtn.hidden(type='button')= t.next
+    button#airflightButton.airflightBtn.hidden(type='button')
+
+  +js('/js/countrypath/index.js')
+
+include ../parts/skeleton/feet.html

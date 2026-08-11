@@ -1,0 +1,25 @@
+{
+  "Benin": [
+    "Niger",
+    "Nigeria"
+  ],
+  "Cameroon": [
+    "Nigeria"
+  ],
+  "Honduras": [
+    "ElSalvador"
+  ],
+  "Iraq": [
+    "Kuwait"
+  ],
+  "Luxembourg": [
+    "Germany"
+  ],
+  "NorthKorea": [
+    "Russia",
+    "SouthKorea"
+  ],
+  "WesternSahara": [
+    "Algeria"
+  ]
+}

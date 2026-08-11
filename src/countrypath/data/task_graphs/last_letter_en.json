@@ -1,0 +1,75 @@
+{
+  "Armenia": [
+    "Azerbaijan"
+  ],
+  "Benin": [
+    "Niger",
+    "Nigeria"
+  ],
+  "Bolivia": [
+    "Argentina"
+  ],
+  "CAR": [
+    "Congo"
+  ],
+  "Cameroon": [
+    "Nigeria"
+  ],
+  "China": [
+    "Afghanistan"
+  ],
+  "Georgia": [
+    "Abkhazia",
+    "Armenia",
+    "Azerbaijan"
+  ],
+  "Israel": [
+    "Lebanon"
+  ],
+  "Libya": [
+    "Algeria"
+  ],
+  "Luxembourg": [
+    "Germany"
+  ],
+  "Mauritania": [
+    "Algeria"
+  ],
+  "Mozambique": [
+    "Swaziland"
+  ],
+  "Namibia": [
+    "Angola"
+  ],
+  "NorthMacedonia": [
+    "Albania"
+  ],
+  "Palestine": [
+    "Egypt"
+  ],
+  "Russia": [
+    "Abkhazia",
+    "Azerbaijan"
+  ],
+  "Slovakia": [
+    "Austria"
+  ],
+  "Slovenia": [
+    "Austria"
+  ],
+  "Sweden": [
+    "Norway"
+  ],
+  "Tunisia": [
+    "Algeria"
+  ],
+  "UAE": [
+    "SaudiArabia"
+  ],
+  "WesternSahara": [
+    "Algeria"
+  ],
+  "Zambia": [
+    "Angola"
+  ]
+}

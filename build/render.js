@@ -71,7 +71,9 @@ function write(folder, name, path, language) {
     content = content.replace(/\n/g, "\r\n");
   }
 
-  fs.writeFile(folder + "/" + name + ".html", content, {encoding: "utf8"}, (err) => {    if (err) {
+  const outPath = folder + "/" + name + ".html";
+  fs.mkdirSync(require("path").dirname(outPath), { recursive: true });
+  fs.writeFile(outPath, content, {encoding: "utf8"}, (err) => {    if (err) {
       return console.log(err);
     }
   });
@@ -87,8 +89,15 @@ function templatize() {
   console.log("Templatized!");
 }
 
+function countrypath() {
+  write("docs", "countrypath/index", "countrypath/index", "ru");
+  write("docs", "countrypath/en/index", "countrypath/index", "en");
+  console.log("CountryPath rendered!");
+}
+
 
 if (!module.parent) {
   randomize();
+  countrypath();
   // templatize();
 }

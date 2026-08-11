@@ -1,0 +1,10 @@
+{
+  "last_letter_ru": "task_graphs/last_letter_ru.json",
+  "last_letter_en": "task_graphs/last_letter_en.json",
+  "start_letter_ru": "task_graphs/start_letter_ru.json",
+  "start_letter_en": "task_graphs/start_letter_en.json",
+  "alpha_order_ru_asc": "task_graphs/alpha_order_ru_asc.json",
+  "alpha_order_ru_desc": "task_graphs/alpha_order_ru_desc.json",
+  "alpha_order_en_asc": "task_graphs/alpha_order_en_asc.json",
+  "alpha_order_en_desc": "task_graphs/alpha_order_en_desc.json"
+}
