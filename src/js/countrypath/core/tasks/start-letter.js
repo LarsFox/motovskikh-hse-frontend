@@ -1,9 +1,9 @@
 "use strict";
 
-import { CountryTask, registerTask } from "./task.js";
-import { taskMessages } from "../../strings.js";
+const {CountryTask, registerTask} = require("./task.js");
+const {taskMessages} = require("../../strings.js");
 
-export class StartLetterTask extends CountryTask {
+class StartLetterTask extends CountryTask {
     constructor(opts) {
         super("start_letter", opts);
         this.lang = opts.lang;
@@ -22,3 +22,5 @@ export class StartLetterTask extends CountryTask {
 }
 
 registerTask("start_letter", (opts) => new StartLetterTask(opts));
+
+module.exports = {StartLetterTask};

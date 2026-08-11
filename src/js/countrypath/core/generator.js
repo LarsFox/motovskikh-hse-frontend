@@ -1,14 +1,14 @@
 "use strict";
 
-import { SeededRNG } from "./rng.js";
-import { createTask, taskIds } from "./tasks/task.js";
+const {SeededRNG} = require("./rng.js");
+const {createTask, taskIds} = require("./tasks/task.js");
 
 const NAME_BASED = new Set(["alpha_order", "last_letter", "start_letter"]);
 const BREAK_PROBABILITY = 0.2;
 const AIRFLIGHT_PROBABILITY = 0.2;
 const LAST_CHANCE_AIRFLIGHT_PROBABILITY = 0.5;
 
-export class RoundGenerator {
+class RoundGenerator {
     constructor(taskGraphs) {
         this.taskGraphs = taskGraphs;
     }
@@ -91,3 +91,5 @@ export class RoundGenerator {
         return { path, airflights: airflightCount };
     }
 }
+
+module.exports = {RoundGenerator};

@@ -1,9 +1,9 @@
 "use strict";
 
-import { PathState, AIR } from "./path_state.js";
-import { Scorer } from "./scorer.js";
-import { CountryTask } from "./tasks/task.js";
-import { messages } from "../strings.js";
+const {PathState, AIR} = require("./path_state.js");
+const {Scorer} = require("./scorer.js");
+const {CountryTask} = require("./tasks/task.js");
+const {messages} = require("../strings.js");
 
 const START_MAX_ATTEMPTS = 3;
 
@@ -13,7 +13,7 @@ const PHASE = {
     DONE: "done",
 };
 
-export class GameController {
+class GameController {
     constructor(opts) {
         this.graph = opts.graph;
         this.generator = opts.generator;
@@ -524,3 +524,5 @@ export class GameController {
         }
     }
 }
+
+module.exports = {GameController};

@@ -1,7 +1,5 @@
 "use strict";
 
-import { SeededRNG } from "./core/rng.js";
-
 const LOCAL_FLAGS = {
     ab: "/countrypath/data/flags/ab.svg",
     sos: "/countrypath/data/flags/sos.svg",
@@ -14,7 +12,7 @@ function flagUrl(iso2) {
     return `https://flagcdn.com/${iso2}.svg`;
 }
 
-export class FlagInput {
+class FlagInput {
     constructor(modalEl, gridEl, dontKnowBtn, lang, rng) {
         this.modalEl = modalEl;
         this.gridEl = gridEl;
@@ -151,3 +149,5 @@ export class FlagInput {
         }
     }
 }
+
+module.exports = { FlagInput };

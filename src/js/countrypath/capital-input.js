@@ -1,8 +1,6 @@
 "use strict";
 
-import { SeededRNG } from "./core/rng.js";
-
-export class CapitalInput {
+class CapitalInput {
     constructor(modalEl, gridEl, dontKnowBtn, lang, rng) {
         this.modalEl = modalEl;
         this.gridEl = gridEl;
@@ -130,3 +128,5 @@ export class CapitalInput {
         }
     }
 }
+
+module.exports = { CapitalInput };

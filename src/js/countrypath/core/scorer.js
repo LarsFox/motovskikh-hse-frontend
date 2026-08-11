@@ -1,6 +1,6 @@
 "use strict";
 
-export const ScoreConfig = {
+const ScoreConfig = {
     roundBase: 1000,
     perCountryBonus: 50,
     startPenalty: [0, -50, -100, -150],
@@ -11,7 +11,7 @@ export const ScoreConfig = {
     capitalDontKnowPenalty: -50,
 };
 
-export class Scorer {
+class Scorer {
     constructor() {
         this.total = 0;
         this._startMisses = 0;
@@ -54,3 +54,5 @@ export class Scorer {
         this.total += ScoreConfig.capitalDontKnowPenalty;
     }
 }
+
+module.exports = { Scorer };
