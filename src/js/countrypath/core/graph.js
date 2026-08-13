@@ -1,6 +1,6 @@
 "use strict";
 
-class BorderGraph {
+export class BorderGraph {
     constructor(borders) {
         this.borders = borders;
     }
@@ -25,5 +25,3 @@ class BorderGraph {
         return Object.keys(this.borders);
     }
 }
-
-module.exports = {BorderGraph};

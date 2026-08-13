@@ -1,7 +1,7 @@
 "use strict";
 
 // xmur3: string -> 32-bit seed generator.
-function hashSeed(str) {
+export function hashSeed(str) {
     let h = 1779033703 ^ str.length;
     for (let i = 0; i < str.length; i++) {
         h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
@@ -16,7 +16,7 @@ function hashSeed(str) {
 }
 
 // mulberry32: deterministic PRNG. Same seed -> same sequence (needed for MP).
-class SeededRNG {
+export class SeededRNG {
     constructor(seed) {
         if (typeof seed === "string") {
             seed = hashSeed(seed)();
@@ -50,5 +50,3 @@ class SeededRNG {
         return a;
     }
 }
-
-module.exports = { hashSeed, SeededRNG };

@@ -57,7 +57,9 @@ function compressJS(filename) {
   return promise;
 }
 
-const exceptions = {};
+const exceptions = {
+  "js/countrypath/package.json": true,
+};
 
 function dirCompress(dir, compressFunc) {
   const promises = [];
@@ -80,8 +82,9 @@ function dirCompress(dir, compressFunc) {
 }
 
 function main() {
-  fs.rmSync("docs/js", {recursive: true});
-  fs.mkdirSync("docs/js");
+  fs.rmSync("docs/js", {recursive: true, force: true});
+  fs.mkdirSync("docs/js", {recursive: true});
+  fs.mkdirSync("docs/css", {recursive: true});
 
   Promise.allSettled(dirCompress("css", compressCSS));
   Promise.allSettled(dirCompress("js", compressJS));

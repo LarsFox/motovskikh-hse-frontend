@@ -1,6 +1,6 @@
 "use strict";
 
-const {AIR} = require("./core/path_state.js");
+import { AIR } from "./core/path_state.js";
 
 const MAP_W = 5775;
 const MAP_H = 2925;
@@ -9,7 +9,7 @@ const ZOOM_STEP = 1.3;
 const WHEEL_SENSITIVITY = 0.0022;
 
 
-class MapView {
+export class MapView {
     constructor(container, paths) {
         this.container = container;
         this.regions = {};
@@ -252,5 +252,3 @@ class MapView {
         this._apply();
     }
 }
-
-module.exports = { MapView };

@@ -1,6 +1,6 @@
-const AIR = "✈";
+export const AIR = "✈";
 
-class PathState {
+export class PathState {
     constructor(start) {
         this.start = start;
         this.path = [start];
@@ -50,5 +50,3 @@ class PathState {
         this.path = [this.start];
     }
 }
-
-module.exports = {PathState, AIR};

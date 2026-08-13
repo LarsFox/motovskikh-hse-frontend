@@ -1,21 +1,21 @@
 "use strict";
 
-const {BorderGraph} = require("./core/graph.js");
-const {RoundGenerator} = require("./core/generator.js");
-const {MapView} = require("./map-view.js");
-const {CountryInput} = require("./country-input.js");
-const {GameController} = require("./core/game.js");
-const {Scorer} = require("./core/scorer.js");
-const {SeededRNG} = require("./core/rng.js");
-const {CountryTask} = require("./core/tasks/task.js");
-const {messages} = require("./strings.js");
-require("./core/tasks/length-only.js");
-require("./core/tasks/end-in.js");
-require("./core/tasks/alpha-order.js");
-require("./core/tasks/last-letter.js");
-require("./core/tasks/start-letter.js");
-const {FlagInput} = require("./flag-input.js");
-const {CapitalInput} = require("./capital-input.js");
+import { BorderGraph } from "./core/graph.js";
+import { RoundGenerator } from "./core/generator.js";
+import { MapView } from "./map-view.js";
+import { CountryInput } from "./country-input.js";
+import { GameController } from "./core/game.js";
+import { Scorer } from "./core/scorer.js";
+import { SeededRNG } from "./core/rng.js";
+import { CountryTask } from "./core/tasks/task.js";
+import { messages } from "./strings.js";
+import "./core/tasks/length-only.js";
+import "./core/tasks/end-in.js";
+import "./core/tasks/alpha-order.js";
+import "./core/tasks/last-letter.js";
+import "./core/tasks/start-letter.js";
+import { FlagInput } from "./flag-input.js";
+import { CapitalInput } from "./capital-input.js";
 
 const DATA_BASE = "/countrypath/data";
 

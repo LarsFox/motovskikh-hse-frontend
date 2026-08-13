@@ -1,9 +1,9 @@
 "use strict";
 
-const {taskMessages} = require("../../strings.js");
-const {AIR} = require("../path_state.js");
+import { taskMessages } from "../../strings.js";
+import { AIR } from "../path_state.js";
 
-class CountryTask {
+export class CountryTask {
     static names = null;
 
     constructor(id, opts) {
@@ -49,11 +49,11 @@ class CountryTask {
 
 const registry = {};
 
-function registerTask(id, factory) {
+export function registerTask(id, factory) {
     registry[id] = factory;
 }
 
-function createTask(id, opts) {
+export function createTask(id, opts) {
     const factory = registry[id];
     if (!factory) {
         throw new Error("unknown task: " + id);
@@ -61,8 +61,6 @@ function createTask(id, opts) {
     return factory(opts);
 }
 
-function taskIds() {
+export function taskIds() {
     return Object.keys(registry);
 }
-
-module.exports = {CountryTask, registerTask, createTask, taskIds};

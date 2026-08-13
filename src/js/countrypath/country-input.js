@@ -9,7 +9,7 @@ function normalize(s) {
         .trim();
 }
 
-class CountryInput {
+export class CountryInput {
     constructor(input, listEl, countries, lang, modalEl) {
         this.input = input;
         this.listEl = listEl;
@@ -147,5 +147,3 @@ class CountryInput {
         }
     }
 }
-
-module.exports = { CountryInput };

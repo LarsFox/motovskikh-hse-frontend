@@ -1,6 +1,6 @@
 "use strict";
 
-function messages(lang) {
+export function messages(lang) {
     const ru = lang !== "en";
     return {
         buildPrompt: ru
@@ -92,7 +92,7 @@ function messages(lang) {
     };
 }
 
-function taskMessages(lang) {
+export function taskMessages(lang) {
     const ru = lang !== "en";
     return {
         langSuffix: (taskLang) => {
@@ -130,5 +130,3 @@ function taskMessages(lang) {
             : `Build a route of ${length} countries ending in ${name}.`),
     };
 }
-
-module.exports = { messages, taskMessages }

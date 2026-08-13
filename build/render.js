@@ -16,6 +16,10 @@ module.exports.generateHashes = generateHashes;
 
 function generateHashes() {
   function dirHashes(hashes, dir) {
+    if (!fs.existsSync("docs/" + dir)) {
+      return;
+    }
+
     for (const path of fs.readdirSync("docs/" + dir)) {
       const fullPath = dir + "/" + path;
       if (path.includes(".")) {

@@ -1,10 +1,10 @@
 "use strict";
 
-const { CountryTask, registerTask } = require("./task.js");
-const { taskMessages } = require("../../strings.js");
-const { AIR } = require("../path_state.js");
+import { CountryTask, registerTask } from "./task.js";
+import { taskMessages } from "../../strings.js";
+import { AIR } from "../path_state.js";
 
-class EndInTask extends CountryTask {
+export class EndInTask extends CountryTask {
     constructor(opts) {
         super("end_in", opts);
         this.target = opts.solution[opts.solution.length - 1];
@@ -26,5 +26,3 @@ class EndInTask extends CountryTask {
 }
 
 registerTask("end_in", (opts) => new EndInTask(opts));
-
-module.exports = { EndInTask };
