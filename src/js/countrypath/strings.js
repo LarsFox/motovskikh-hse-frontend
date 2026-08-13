@@ -130,3 +130,5 @@ function taskMessages(lang) {
             : `Build a route of ${length} countries ending in ${name}.`),
     };
 }
+
+module.exports = { messages, taskMessages }
