@@ -1,6 +1,6 @@
 "use strict";
 
-export function messages(lang) {
+function messages(lang) {
     const ru = lang !== "en";
     return {
         buildPrompt: ru
@@ -92,7 +92,7 @@ export function messages(lang) {
     };
 }
 
-export function taskMessages(lang) {
+function taskMessages(lang) {
     const ru = lang !== "en";
     return {
         langSuffix: (taskLang) => {
