@@ -285,6 +285,9 @@ async function main() {
     capitalOverlay.addEventListener("click", () => capitalInput.close());
 
     game.onGameOver = (total) => {
+        input.hide();
+        flagInput.close();
+        capitalInput.close();
         dom.finalScore.textContent = String(total);
         dom.panelGameOver.classList.remove("hidden");
         dom.langLink.classList.remove("hidden");
