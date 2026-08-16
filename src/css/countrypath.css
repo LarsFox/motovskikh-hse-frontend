@@ -75,6 +75,7 @@ h2 {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
+  min-width: 0;
   overflow: hidden;
 }
 .map {
@@ -204,6 +205,10 @@ path.region.pending {
   border-top: 1px solid #1c1c1c;
   padding: 14px 18px 14px;
   z-index: 10;
+  flex: 0 1 33.333%;
+  min-width: 33.333%;
+  min-height: 0;
+  overflow-y: auto;
 }
 .taskBar {
   color: #ffbf69;

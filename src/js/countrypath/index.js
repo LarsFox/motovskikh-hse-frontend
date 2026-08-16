@@ -237,6 +237,9 @@ async function main() {
     });
 
     document.addEventListener("keydown", (e) => {
+        if (e.defaultPrevented) {
+            return;
+        }
         if (e.key === "Enter" && !dom.nextButton.classList.contains("hidden")) {
             dom.nextButton.click();
         }

@@ -57,13 +57,12 @@ export class GameController {
         if (this.phase !== PHASE.BUILD) {
             return;
         }
-        if (!this.pending) {
-            this._setInfo(this.msg.buildPrompt);
-            return;
-        }
+        const hadSelection = this.pending !== null;
         this._resetInput();
+        this._airflightMode = false;
         this._refreshView();
-        this._setInfo(this.msg.selectionCancelled);
+        this._renderAirflights();
+        this._setInfo(hadSelection ? this.msg.selectionCancelled : this.msg.buildPrompt);
     }
 
     name(id) {
@@ -296,7 +295,9 @@ export class GameController {
 
     _clearPending() {
         this._resetInput();
+        this._airflightMode = false;
         this._refreshView();
+        this._renderAirflights();
     }
 
     dontKnow() {
@@ -306,10 +307,9 @@ export class GameController {
         const id = this.pending;
         const result = this._validateMove(id, false);
         if (!result.ok) {
-            this._resetInput();
             this.scorer.dontKnow();
             this._renderScore();
-            this._refreshView();
+            this._clearPending();
             if (this.onRevealName) {
                 this.onRevealName(id, () => {
                     this._setInfo(result.reason);
