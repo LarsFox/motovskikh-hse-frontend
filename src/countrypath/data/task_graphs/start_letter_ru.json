@@ -1,0 +1,110 @@
+{
+  "Armenia": [
+    "Azerbaijan"
+  ],
+  "Azerbaijan": [
+    "Armenia"
+  ],
+  "Benin": [
+    "BurkinaFaso"
+  ],
+  "Bolivia": [
+    "Brazil"
+  ],
+  "Brazil": [
+    "Bolivia"
+  ],
+  "BurkinaFaso": [
+    "Benin"
+  ],
+  "China": [
+    "Kazakhstan",
+    "Kyrgyzstan",
+    "NorthKorea"
+  ],
+  "Eritrea": [
+    "Ethiopia"
+  ],
+  "Ethiopia": [
+    "Eritrea"
+  ],
+  "Guatemala": [
+    "Honduras"
+  ],
+  "Guinea": [
+    "GuineaBissau"
+  ],
+  "GuineaBissau": [
+    "Guinea"
+  ],
+  "Honduras": [
+    "Guatemala"
+  ],
+  "Iran": [
+    "Iraq"
+  ],
+  "Iraq": [
+    "Iran",
+    "Jordan"
+  ],
+  "Israel": [
+    "Jordan"
+  ],
+  "Jordan": [
+    "Iraq",
+    "Israel"
+  ],
+  "Kazakhstan": [
+    "China",
+    "Kyrgyzstan"
+  ],
+  "Kyrgyzstan": [
+    "China",
+    "Kazakhstan"
+  ],
+  "Latvia": [
+    "Lithuania"
+  ],
+  "Lithuania": [
+    "Latvia"
+  ],
+  "Malawi": [
+    "Mozambique"
+  ],
+  "Mali": [
+    "Mauritania"
+  ],
+  "Mauritania": [
+    "Mali"
+  ],
+  "Mozambique": [
+    "Malawi"
+  ],
+  "Niger": [
+    "Nigeria"
+  ],
+  "Nigeria": [
+    "Niger"
+  ],
+  "NorthKorea": [
+    "China"
+  ],
+  "NorthMacedonia": [
+    "Serbia"
+  ],
+  "Oman": [
+    "UAE"
+  ],
+  "Serbia": [
+    "NorthMacedonia"
+  ],
+  "UAE": [
+    "Oman"
+  ],
+  "Zambia": [
+    "Zimbabwe"
+  ],
+  "Zimbabwe": [
+    "Zambia"
+  ]
+}

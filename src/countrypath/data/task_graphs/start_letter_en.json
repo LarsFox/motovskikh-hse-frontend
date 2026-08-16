@@ -1,0 +1,92 @@
+{
+  "Armenia": [
+    "Azerbaijan"
+  ],
+  "Azerbaijan": [
+    "Armenia"
+  ],
+  "Benin": [
+    "BurkinaFaso"
+  ],
+  "Bolivia": [
+    "Brazil"
+  ],
+  "Brazil": [
+    "Bolivia"
+  ],
+  "BurkinaFaso": [
+    "Benin"
+  ],
+  "CAR": [
+    "Cameroon",
+    "Chad"
+  ],
+  "Cameroon": [
+    "CAR",
+    "Chad"
+  ],
+  "Chad": [
+    "CAR",
+    "Cameroon"
+  ],
+  "Eritrea": [
+    "Ethiopia"
+  ],
+  "Ethiopia": [
+    "Eritrea"
+  ],
+  "Guinea": [
+    "GuineaBissau"
+  ],
+  "GuineaBissau": [
+    "Guinea"
+  ],
+  "Iran": [
+    "Iraq"
+  ],
+  "Iraq": [
+    "Iran"
+  ],
+  "Kazakhstan": [
+    "Kyrgyzstan"
+  ],
+  "Kyrgyzstan": [
+    "Kazakhstan"
+  ],
+  "Latvia": [
+    "Lithuania"
+  ],
+  "Lithuania": [
+    "Latvia"
+  ],
+  "Malawi": [
+    "Mozambique"
+  ],
+  "Mali": [
+    "Mauritania"
+  ],
+  "Mauritania": [
+    "Mali"
+  ],
+  "Mozambique": [
+    "Malawi"
+  ],
+  "Niger": [
+    "Nigeria"
+  ],
+  "Nigeria": [
+    "Niger"
+  ],
+  "SouthSudan": [
+    "Sudan"
+  ],
+  "Sudan": [
+    "SouthSudan"
+  ],
+  "Zambia": [
+    "Zimbabwe"
+  ],
+  "Zimbabwe": [
+    "Zambia"
+  ]
+}

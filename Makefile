@@ -15,5 +15,11 @@ co:
 	@npm run hashes
 	@echo 'Compressed!'
 
-a: co r
+data:
+	@node build/countrypath-task-graphs.js
+	@mkdir -p docs/countrypath/data/flags
+	@cp -r src/countrypath/data/* docs/countrypath/data
+	@echo 'Data copied!'
+
+a: co data r
 rc: r c
