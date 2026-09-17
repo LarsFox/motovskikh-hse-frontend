@@ -6,7 +6,8 @@
   "scripts": {
     "compress": "node build/compress.js",
     "hashes": "node build/hashes.js",
-    "render": "node build/render.js"
+    "render": "node build/render.js",
+    "tasks": "node build/countrypath-task-graphs.js"
   },
   "author": "Leo",
   "license": "ISC",

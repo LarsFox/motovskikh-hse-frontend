@@ -16,7 +16,7 @@ co:
 	@echo 'Compressed!'
 
 data:
-	@node build/countrypath-task-graphs.js
+	@npm run tasks
 	@mkdir -p docs/countrypath/data/flags
 	@cp -r src/countrypath/data/* docs/countrypath/data
 	@echo 'Data copied!'
